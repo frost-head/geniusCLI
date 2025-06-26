@@ -1,0 +1,5 @@
+here some activity
+
+1. find all files in current dir
+2. create folder name test
+3. delete the same folder

@@ -1,0 +1,21 @@
+here some activity
+
+1. find all files in current dir
+2. create folder name test
+3. delete the same folder
+It looks like you want to execute the steps listed in your `file_context`. Here are the commands to perform those activities:
+
+To list all files and directories in your current directory:
+```bash
+ls -F
+```
+
+To create a new directory named `test`:
+```bash
+mkdir test
+```
+
+To delete the `test` directory you just created:
+```bash
+rmdir test
+```
