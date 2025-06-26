@@ -43,7 +43,7 @@ while true; do
   conversation_context=$(tail -n 5 "$CONVO_FILE")
 
   log "Running Gemini API..."
-  python3 /home/frosthead/Projects/geniusCLI/API/gemini.api.py \
+  python3 "./API/gemini.api.py" \
     --cur_dir "$cur_dir" \
     --question "$question" \
     --last_10_commands "$last_10_commands" \
@@ -58,7 +58,7 @@ while true; do
     log "Gemini API call successful."
   fi
 
-  python -m rich.markdown response.txt
+  python3 -m rich.markdown response.txt
 
   ./Parse/parse.sh "response.txt"
   log "Parsed response.txt"
