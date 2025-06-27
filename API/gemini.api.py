@@ -6,7 +6,20 @@ import argparse
 
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+APIKEY = os.getenv("GEMINI_API_KEY")
+
+if not APIKEY:
+    APIKEY = input("🔐 Enter your Gemini API Key: ").strip()
+    if APIKEY:
+        with open(".env", "a") as f:
+            f.write(f"\nGEMINI_API_KEY={APIKEY}")
+        print("✅ API key saved to .env file.")
+    else:
+        print("❌ No API key provided. Exiting.")
+        exit(1)
+
+
+client = genai.Client(api_key=APIKEY)
 
 
 parser = argparse.ArgumentParser()
