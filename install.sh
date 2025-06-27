@@ -48,10 +48,11 @@ install_python_deps() {
 link_executable() {
   echo "🔗 Linking genius CLI..."
   sudo ln -sf "$INSTALL_DIR/genius.sh" "$LINK_PATH"
-  sudo chmod +x "$INSTALL_DIR/main.sh"
-  sudo chmod +x "$INSTALL_DIR/utils/getHistory.sh"
-  sudo chmod +x "$INSTALL_DIR/API/gemini.api.py"
-  sudo chmod +x "$INSTALL_DIR/Parse/parse.sh"
+#   sudo chmod +x "$INSTALL_DIR/main.sh"
+#   sudo chmod +x "$INSTALL_DIR/utils/getHistory.sh"
+#   sudo chmod +x "$INSTALL_DIR/API/gemini.api.py"
+#   sudo chmod +x "$INSTALL_DIR/Parse/parse.sh"
+  sudo chown -R $USER:$USER /usr/local/geniusCLI
 
 
   sudo chmod +x "$LINK_PATH"
