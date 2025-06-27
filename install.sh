@@ -47,16 +47,19 @@ install_python_deps() {
 # Symlink to /usr/local/bin/genius
 link_executable() {
   echo "🔗 Linking genius CLI..."
+
+  # Make all .sh and .py scripts executable
+  sudo find "$INSTALL_DIR" -type f \( -iname "*.sh" -o -iname "*.py" \) -exec chmod +x {} \;
+
+  # Symlink genius.sh to /usr/local/bin/genius
   sudo ln -sf "$INSTALL_DIR/genius.sh" "$LINK_PATH"
-#   sudo chmod +x "$INSTALL_DIR/main.sh"
-#   sudo chmod +x "$INSTALL_DIR/utils/getHistory.sh"
-#   sudo chmod +x "$INSTALL_DIR/API/gemini.api.py"
-#   sudo chmod +x "$INSTALL_DIR/Parse/parse.sh"
-  sudo chown -R $USER:$USER /usr/local/geniusCLI
 
+  # Fix ownership
+  sudo chown -R "$USER:$USER" "$INSTALL_DIR"
 
-  sudo chmod +x "$LINK_PATH"
+  echo "✅ Linked genius as '/usr/local/bin/genius'"
 }
+
 
 install_sysdeps
 clone_repo
