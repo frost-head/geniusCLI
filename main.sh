@@ -1,6 +1,5 @@
 #!/bin/bash
 
-ENV_FILE="/usr/local/geniusCLI/.env"
 CONVO_FILE="/tmp/conversation_log.txt"
 LOG_FILE="/tmp/geniusCLI.log"
 > "$CONVO_FILE"  # Overwrite each run
@@ -18,26 +17,7 @@ help (){
 }
 
 
-# Load existing .env
-if [ -f "$ENV_FILE" ]; then
-  export $(grep -v '^#' "$ENV_FILE" | xargs)
-fi
 
-# Check and prompt for API key if missing
-if [ -z "$GEMINI_API_KEY" ]; then
-  echo -n "🔐 Enter your Gemini API Key: "
-  read -r GEMINI_API_KEY
-
-  if [ -z "$GEMINI_API_KEY" ]; then
-    echo "❌ API key is required. Exiting."
-    exit 1
-  fi
-
-  echo "GEMINI_API_KEY=$GEMINI_API_KEY" >> "$ENV_FILE"
-  echo "✅ API key saved to $ENV_FILE"
-fi
-
-export GEMINI_API_KEY
 
 
 while true; do

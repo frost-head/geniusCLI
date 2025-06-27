@@ -4,7 +4,31 @@ set -e
 REPO_URL="https://github.com/frost-head/geniusCLI.git"
 INSTALL_DIR="/usr/local/geniusCLI"
 LINK_PATH="/usr/local/bin/genius"
+ENV_FILE="/usr/local/geniusCLI/.env"
 
+
+getkey() {# Load existing .env
+
+if [ -f "$ENV_FILE" ]; then
+  export $(grep -v '^#' "$ENV_FILE" | xargs)
+fi
+
+# Check and prompt for API key if missing
+if [ -z "$GEMINI_API_KEY" ]; then
+  echo -n "🔐 Enter your Gemini API Key: "
+  read -r GEMINI_API_KEY
+
+  if [ -z "$GEMINI_API_KEY" ]; then
+    echo "❌ API key is required. Exiting."
+    exit 1
+  fi
+
+  echo "GEMINI_API_KEY=$GEMINI_API_KEY" >> "$ENV_FILE"
+  echo "✅ API key saved to $ENV_FILE"
+fi
+
+export GEMINI_API_KEY
+}
 echo "🚀 Installing geniusCLI..."
 
 # Install required system packages
@@ -65,5 +89,6 @@ install_sysdeps
 clone_repo
 install_python_deps
 link_executable
+getkey
 
 echo "✅ Done! Run 'genius' to launch."
