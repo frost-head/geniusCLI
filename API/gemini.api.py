@@ -17,7 +17,8 @@ if not APIKEY:
     else:
         print("❌ No API key provided. Exiting.")
         exit(1)
-
+else:
+    print("API key loaded from .env file.")
 
 client = genai.Client(api_key=APIKEY)
 
