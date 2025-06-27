@@ -79,8 +79,23 @@ get_key() {
 # ---------------------------------------
 install_python_deps() {
   echo "🐍 Installing Python requirements..."
-  sudo pip3 install -r "$INSTALL_DIR/requirements.txt" 
+
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Use --break-system-packages if available (Ubuntu/Debian)
+    if pip3 install --help | grep -q -- "--break-system-packages"; then
+      sudo pip3 install --break-system-packages -r "$INSTALL_DIR/requirements.txt"
+    else
+      sudo pip3 install -r "$INSTALL_DIR/requirements.txt"
+    fi
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS: no special flags needed
+    pip3 install -r "$INSTALL_DIR/requirements.txt"
+  else
+    echo "❌ Unsupported OS: $OSTYPE"
+    exit 1
+  fi
 }
+
 
 # ---------------------------------------
 # 🔗 Link CLI + fix perms
