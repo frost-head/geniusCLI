@@ -1,9 +1,9 @@
-#!/bin/bash
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# !/bin/bash
+# SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # echo $SCRIPT_DIR
 SESSION_NAME="geniusCLI"
-COMMAND="$SCRIPT_DIR/main.sh"
-TMUX_CONF="$SCRIPT_DIR/utils/tmux.conf"
+COMMAND="./main.sh"
+TMUX_CONF="./utils/tmux.conf"
 
 if tmux -f "$TMUX_CONF" has-session -t "$SESSION_NAME" 2>/dev/null; then
   tmux -f "$TMUX_CONF" attach-session -t "$SESSION_NAME"
