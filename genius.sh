@@ -1,6 +1,6 @@
 #!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-echo $SCRIPT_DIR
+# echo $SCRIPT_DIR
 SESSION_NAME="geniusCLI"
 COMMAND="$SCRIPT_DIR/main.sh"
 TMUX_CONF="$SCRIPT_DIR/utils/tmux.conf"

@@ -1,54 +1,59 @@
 #!/usr/bin/env bash
 set -e
 
-REPO="frost-head/geniusCLI"
-RAW="https://raw.githubusercontent.com/$REPO/main"
-SCRIPT="genius.sh"
-REQ="requirements.txt"
+REPO_URL="https://github.com/frost-head/geniusCLI.git"
+INSTALL_DIR="/usr/local/geniusCLI"
+LINK_PATH="/usr/local/bin/genius"
 
 echo "🚀 Installing geniusCLI..."
 
-# Determine OS and package manager
+# Install required system packages
 install_sysdeps() {
-  echo "🔧 Installing tmux, tree, python3-pip..."
+  echo "📦 Installing system dependencies..."
+
   if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if command -v apt &>/dev/null; then
       sudo apt update
-      sudo apt install -y tmux tree python3-pip
+      sudo apt install -y tmux tree python3-pip git
     elif command -v dnf &>/dev/null; then
-      sudo dnf install -y tmux tree python3-pip
+      sudo dnf install -y tmux tree python3-pip git
     elif command -v yum &>/dev/null; then
-      sudo yum install -y tmux tree python3-pip
+      sudo yum install -y tmux tree python3-pip git
     else
       echo "❌ Unsupported Linux package manager"
       exit 1
     fi
   elif [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install tmux tree python
+    brew install tmux tree python git
   else
     echo "❌ Unsupported OS: $OSTYPE"
     exit 1
   fi
 }
 
-install_pipdeps() {
-  echo "📥 Fetching Python dependencies: $REQ"
-  curl -fsSL "$RAW/$REQ" -o /tmp/$REQ
-  echo "🐍 Installing pip packages from $REQ..."
-  pip3 install -r /tmp/$REQ
-  rm /tmp/$REQ
+# Clone the repo
+clone_repo() {
+  echo "📁 Cloning geniusCLI to $INSTALL_DIR..."
+  sudo rm -rf "$INSTALL_DIR"
+  sudo git clone "$REPO_URL" "$INSTALL_DIR"
 }
 
-install_cli() {
-  echo "📥 Downloading CLI script: $SCRIPT"
-  curl -fsSL "$RAW/$SCRIPT" -o /tmp/genius
-  sudo mv /tmp/genius /usr/local/bin/genius
-  sudo chmod +x /usr/local/bin/genius
-  echo "✅ Installed CLI as 'genius'"
+# Install Python requirements
+install_python_deps() {
+  echo "🐍 Installing Python requirements..."
+  sudo pip3 install -r "$INSTALL_DIR/requirements.txt"
+}
+
+# Symlink to /usr/local/bin/genius
+link_executable() {
+  echo "🔗 Linking genius CLI..."
+  sudo ln -sf "$INSTALL_DIR/genius.sh" "$LINK_PATH"
+  sudo chmod +x "$LINK_PATH"
 }
 
 install_sysdeps
-install_pipdeps
-install_cli
+clone_repo
+install_python_deps
+link_executable
 
-echo "🎉 Installation complete! Run 'genius' to start."
+echo "✅ Done! Run 'genius' to launch."
