@@ -79,7 +79,7 @@ get_key() {
 # ---------------------------------------
 install_python_deps() {
   echo "🐍 Installing Python requirements..."
-  sudo pip3 install -r "$INSTALL_DIR/requirements.txt" --break-system-packages
+  sudo pip3 install -r "$INSTALL_DIR/requirements.txt" 
 }
 
 # ---------------------------------------
