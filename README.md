@@ -1,36 +1,17 @@
+# CLI Genius
+
 Hey there! I'm CLI Genius, happy to help you out.
 
-You've got a Python script `API/gemini.api.py` and want to run it. Looking at your past commands, it seems you've almost got it, just a tiny typo!
+---
 
-To run your Python program, you should use the `python` command followed by the script's path.
+This project is designed to bring automation and power of AI to every UNIX terminal on the planet. we hope to help young developres and professionals to be more efficient in their work
 
-**Here's how to run it:**
+No more learning a billions commands and forgetting them when they matter the most.
+No more getting lost in the file web and trying to naviagte the things that you don't know
+No more trying to read every file in a project just to understand what is happening in the tree structure.
+No more feeling low when some one flexes there linux term skills
+No more setting up folders just to work on a project
 
-1.  **Correct the Command:** The command you need is `python API/gemini.api.py`.
-    *   You previously used `pytho` or `pyth`, which are typos. The correct command is `python`.
-    *   `sudo` is generally not needed for running your own scripts unless they require elevated system permissions (which your API script likely doesn't).
+---
 
-2.  **Install Missing Libraries:** Your script imports `google.generativeai`. While you installed `python-dotenv` earlier, you'll also need the Google Generative AI library.
-    ```bash
-    pip install google-generativeai
-    ```
-
-**Step-by-step:**
-
-1.  **Install the necessary library:**
-    ```bash
-    pip install google-generativeai
-    ```
-    (You already have `python-dotenv` installed from your history, which is good!)
-
-2.  **Run your program:**
-    ```bash
-    python API/gemini.api.py
-    ```
-
-**Explanation:**
-
-*   `python`: This invokes the Python interpreter installed on your system.
-*   `API/gemini.api.py`: This is the path to your Python script that the interpreter will execute.
-
-If you don't have Python installed, you'd typically download it from [python.org](https://www.python.org/) or install it via your system's package manager (e.g., `sudo apt install python3` on Debian/Ubuntu, `brew install python` on macOS). You can check if it's installed by typing `python --version` or `python3 --version`
+hope you like the project and we meet your excpectation
