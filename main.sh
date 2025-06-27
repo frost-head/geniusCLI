@@ -43,7 +43,7 @@ while true; do
   cur_dir=$(tmux display -p -t ':.+1' "#{pane_current_path}")
   file_tree=$(tree -L 2 "$cur_dir")
   last_output=""
-  file_context=$(<context_file.txt)
+  file_context=$(<"/usr/local/geniusCLI/context_file.txt")
   conversation_context=$(tail -n 5 "$CONVO_FILE")
 
   log "Running Gemini API..."
