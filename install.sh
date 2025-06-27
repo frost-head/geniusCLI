@@ -16,7 +16,7 @@ getkey() {# Load existing .env
 
   echo "GEMINI_API_KEY=$GEMINI_API_KEY" >> "$ENV_FILE"
   echo "✅ API key saved to $ENV_FILE"
-fi
+
 
 export GEMINI_API_KEY
 }
