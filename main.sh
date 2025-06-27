@@ -17,7 +17,7 @@ help (){
 }
 
 while true; do
-  ./utils/getHistory.sh
+  /usr/local/geniusCLI/utils/getHistory.sh
   echo "$last_10_commands" > /tmp/shell_history.txt
 
   echo ""
@@ -43,7 +43,7 @@ while true; do
   conversation_context=$(tail -n 5 "$CONVO_FILE")
 
   log "Running Gemini API..."
-  python3 "./API/gemini.api.py" \
+  python3 "/usr/local/geniusCLI/API/gemini.api.py" \
     --cur_dir "$cur_dir" \
     --question "$question" \
     --last_10_commands "$last_10_commands" \
@@ -60,7 +60,7 @@ while true; do
 
   python3 -m rich.markdown response.txt
 
-  ./Parse/parse.sh "response.txt"
+  /usr/local/geniusCLI/Parse/parse.sh "response.txt"
   log "Parsed response.txt"
 
   if [ -s "/tmp/execute.txt" ]; then  
