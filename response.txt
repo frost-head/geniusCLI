@@ -1,0 +1,22 @@
+
+`ls` stands for "list segments" or "list directory contents." It's used to list the files and subdirectories within a specified directory. When used without any arguments, it lists the contents of the current directory.
+
+Here's how you can use it:
+
+To list the contents of your current directory:
+
+```bash
+ls
+```
+
+To see more details like permissions, ownership, size, and modification date (long format listing):
+
+```bash
+ls -l
+```
+
+To include hidden files (those starting with a `.`) in the listing:
+
+```bash
+ls -a
+```
