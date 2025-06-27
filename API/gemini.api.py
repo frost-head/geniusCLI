@@ -6,6 +6,7 @@ import argparse
 
 load_dotenv()
 
+# Check for API key
 APIKEY = os.getenv("GEMINI_API_KEY")
 
 if not APIKEY:
@@ -17,12 +18,9 @@ if not APIKEY:
     else:
         print("❌ No API key provided. Exiting.")
         exit(1)
-else:
-    print("API key loaded from .env file.")
 
+# Now it's safe to use the key
 client = genai.Client(api_key=APIKEY)
-
-
 parser = argparse.ArgumentParser()
 
 parser.add_argument("--last_10_commands")
